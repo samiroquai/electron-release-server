@@ -31,25 +31,25 @@ angular.module('app.core.auth', [
     function($rootScope, AUTH_EVENTS, AuthService, Notification, $location) {
       $rootScope.$on('$routeChangeStart', function(event, next) {
         // Consider whether to redirect the request if it is unauthorized
-        if (
-          next.data &&
-          next.data.private
-        ) {
-          if (!AuthService.isAuthenticated()) {
-            console.log('Unauthorized request, redirecting...');
-            event.preventDefault();
-            // User is not logged in
-            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        // if (
+        //   next.data &&
+        //   next.data.private
+        // ) {
+        //   if (!AuthService.isAuthenticated()) {
+        //     console.log('Unauthorized request, redirecting...');
+        //     event.preventDefault();
+        //     // User is not logged in
+        //     $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
 
-            Notification.error({
-              title: 'Unauthorized',
-              message: 'Please login'
-            });
+        //     Notification.error({
+        //       title: 'Unauthorized',
+        //       message: 'Please login'
+        //     });
 
-            // Redirect the user to the login page
-            $location.path('/auth/login');
-          }
-        }
+        //     // Redirect the user to the login page
+        //     $location.path('/auth/login');
+        //   }
+        // }
       });
     }
   ]);
